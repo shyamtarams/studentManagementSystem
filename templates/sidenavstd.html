@@ -1,0 +1,26 @@
+
+   
+    {% block content %}
+    <div class="col ">
+        <!-- <div class="card mt-2 mb-3 shadow p-3 mb-5"> -->
+            <!-- <img class="rounded-circle img-fluid mt-2" width="80"  src="https://www.w3schools.com/bootstrap4/newyork.jpg" alt=""> -->
+        
+            <p>{{ student_dtl.name }}</p>
+            
+        <!-- </div> -->
+    </div>
+    
+    <div class="col">
+        <a href="/home/studentDetails">
+            <div class="card mt-2 text-white bg-primary mb-3 shadow p-3 mb-5">
+                <p>Student Dashboard</p>
+            </div>
+         </a>
+         <a href="/home/studentDetails/{{student_dtl.id}}">
+            <div class="card mt-2 text-white bg-info mb-3 shadow p-3 mb-5">
+                <p>Update</p>
+            </div>
+        </a>
+         
+    </div>
+    {% endblock %}

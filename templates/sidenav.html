@@ -1,0 +1,35 @@
+
+   
+    {% block content %}
+    <div class="col ">
+        <!-- <div class="card mt-2 mb-3 shadow p-3 mb-5"> -->
+            <!-- <img class="rounded-circle img-fluid mt-2" width="80"  src="https://www.w3schools.com/bootstrap4/newyork.jpg" alt=""> -->
+        
+            <p>{{user.username}}</p>
+            
+        <!-- </div> -->
+    </div>
+    
+    <div class="col">
+        <a href="/home/adminsite">
+            <div class="card mt-2 text-white bg-primary mb-3 shadow p-3 mb-5">
+                <p>Admin Dashboard</p>
+            </div>
+         </a>
+         <a href="/home/addstudent">
+            <div class="card mt-2 text-white bg-info mb-3 shadow p-3 mb-5">
+                <p>Add student</p>
+            </div>
+        </a>
+         <a href="/home/active">
+            <div class="card mt-2 text-white bg-info mb-3 shadow p-3 mb-5">
+                <p>Active student</p>
+            </div>
+        </a>
+         <a href="/home/inactive">
+            <div class="card mt-2 text-white bg-info mb-3 shadow p-3 mb-5">
+                <p>Inactive student</p>
+            </div>
+        </a>
+    </div>
+    {% endblock %}

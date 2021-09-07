@@ -1,0 +1,12 @@
+.bgimg
+{
+background-image:url('{% static "image/student_bg.jpg" %}');
+/* background-repeat:no-repeat;
+background-size:100%; */
+
+background-size: 1800px 900px;
+background-repeat: no-repeat;
+background-position: top;
+background-attachment: fixed;
+
+}
