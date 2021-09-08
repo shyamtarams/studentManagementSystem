@@ -72,6 +72,7 @@ def adminsite(request):
     return render(request,"home/adminsite.html",data)
 
 # register student
+@login_required(login_url='/accounts/login/')
 def studentRegister(request):
     if request.method == "POST":
         name=request.POST["name"]
@@ -96,6 +97,7 @@ def studentRegister(request):
         return render(request,"home/addstudent.html")
 
 # active student
+@login_required(login_url='/accounts/login/')
 def activeStudent(request):
     student_dtl=Student.objects.filter(status="active")
     data={
@@ -106,6 +108,7 @@ def activeStudent(request):
     return render(request,"home/activestudent.html",data)
 
 # inactive student
+@login_required(login_url='/accounts/login/')
 def inactiveStudent(request):
     student_dtl=Student.objects.filter(status="inactive")
     data={
@@ -113,6 +116,8 @@ def inactiveStudent(request):
      }
     return render(request,"home/inactivestudent.html",data)
 
+#change student status
+@login_required(login_url='/accounts/login/')
 def studentStatus(request,id):
     student_dtl=Student.objects.get(id=id)
     if student_dtl.status == "active":
@@ -123,6 +128,7 @@ def studentStatus(request,id):
         student_dtl.save()
     return redirect("/home/adminsite")
 
+#get loged student details
 def studentDetails(request):
     try:
         id= request.session['log_id']
@@ -145,7 +151,7 @@ def logout(request):
     except:
         return redirect("/home/login/")
     
-
+#update student details
 def updateStudent(request):
     try:
         id= request.session['log_id']
