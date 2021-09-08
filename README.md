@@ -41,4 +41,3 @@ This web site considt of two modules Admin and Student.
   # create student
   
   login as admin and go to create student and fill all the data.
-  
