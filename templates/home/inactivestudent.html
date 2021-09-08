@@ -33,7 +33,7 @@
                             <th scope="col">id</th>
                             <th scope="col">name</th>
                             <th scope="col">username</th>
-                            <th scope="col">status</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                             <td>{{p.id}}</td>
                             <td>{{p.name}}</td>
                             <td>{{p.username}}</td>
-                            <th scope="row"><a href="/home/status/{{p.id}}">{{ p.status }}</a></th>
+                            <th scope="row"><a href="/home/status/{{p.id}}">Active</a></th>
                           </tr>
                           {%endfor%}
                     </tbody>
