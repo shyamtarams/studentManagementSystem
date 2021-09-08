@@ -10,6 +10,59 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+<script>
+    $(document).ready(function() {
+            $('#id_contact').blur(function() {
+                var mobNum = $(this).val();
+                var filter = /^\d*(?:\.\d{1,2})?$/;
+
+          if (filter.test(mobNum)) {
+            if(mobNum.length==10){
+                  console.log("contact")
+             } else {
+                $('#mobile-valid').html('Please put 10  digit mobile number').css('color', 'red');
+                return false;
+              }
+            }
+            else {
+              $('#mobile-valid').html('Not a valid number').css('color', 'red');
+              return false;
+           }
+
+            });
+    });
+
+
+    $(document).ready(function() {
+            $('#id_password').blur(function() {
+                if ($('#id_password').val().length < 5) {
+                    console.log("paas")
+                    $(':input[type="submit"]').prop('disabled', true)
+                    $('#msg_pass').html('password must be more than 5 characters').css('color', 'red')
+                } else if ($('#id_password').val().length > 10) {
+                    console.log("no")
+                    $(':input[type="submit"]').prop('disabled', true)
+                    $('#msg_pass').html('password must be less than 10 characters').css('color', 'red')
+                } else {
+                    $(':input[type="submit"]').prop('disabled', false)
+                    $('#msg_pass').html('paasword must be in 5-10').css('color', 'black')
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            $('#id_password2').on('keyup', function() {
+                if ($('#id_password').val() == $('#id_password2').val()) {
+                    $('#message').html('').css('color', 'green');
+                    $(':input[type="submit"]').prop('disabled', false);
+                } else
+                    $(':input[type="submit"]').prop('disabled', true),
+                    $('#message').html('Not Matching passwords').css('color', 'red');
+            });
+        });
+</script>
+
+    
 </head>
 <body>
     {% include 'topnav.html'%}
@@ -38,6 +91,7 @@
                     <div class="row mt-4">
                         <div class="col-sm-6 ">
                         <input type="text" class="form-control" name="contact" maxlength="254" required="" id="id_contact" placeholder="contact">
+                        <label for="" id="mobile-valid" class="hidden mob"></label>
                         </div>
                         <div class="col-sm-6">
                             <input type="email" class="form-control" name="email" maxlength="254" required="" id="id_email" placeholder="email">
@@ -46,11 +100,15 @@
                     <div class="row mt-4">
                         <div class="col-sm-6 ">
                         <input type="text" class="form-control" name="password" maxlength="254" required="" id="id_password" placeholder="password">
+                        <label for="" id="msg_pass"></label>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="name" maxlength="254"  id="id_name" placeholder="confirm password">
+                            <input type="text" class="form-control" name="password2" maxlength="254"  id="id_password2" placeholder="confirm password">
+                            <label for="" id="message"></label>
                         </div>
                     </div>
+                    <input type="hidden" value="student" name="rule" maxlength="20" required="" id="id_rule">
+                    <input type="hidden" value="active" name="status" maxlength="20" required="" id="id_status">
                     
                         <button type="submit" class="btn btn-info mt-4">Register</button>
                     </div>

@@ -77,11 +77,22 @@ WSGI_APPLICATION = 'studentManagementSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'student_db',
+        'USER':'postgres', 
+        'PASSWORD': '****',
+        'HOST': '****', 
+        'PORT': '5432',
+     }
 }
 
 
@@ -104,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTH_USER_MODEL = 'accounts.myUser'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -117,6 +129,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+LOGIN_REDIRECT_URL='/home/adminsite/'
+LOGOUT_REDIRECT_URL='/accounts/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
