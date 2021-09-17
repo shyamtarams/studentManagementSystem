@@ -8,6 +8,60 @@ from django.contrib.auth import login, authenticate
 
 from django.contrib.auth.decorators import login_required
 
+#searializers example
+from .serializers import dataSerializers
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from django.http.response import JsonResponse
+from .models import apiData
+
+
+@csrf_exempt
+def apiView(request,id=0):
+    if request.method == 'POST':
+        print(request)
+        udata = JSONParser().parse(request)
+        print(udata)
+        u_serializers = dataSerializers(data = udata)
+        if u_serializers.is_valid():
+            u_serializers.save()
+            return JsonResponse('data in', safe=False)
+        return JsonResponse("failed ",safe=False)
+    elif request.method == 'GET':
+        user= apiData.objects.all()
+        u_serializers = dataSerializers(user, many='True' )
+        return JsonResponse(u_serializers.data, safe=False)
+    elif request.method == "PUT":
+        udata = JSONParser().parse(request)
+        print(udata['id'])
+        user = apiData.objects.get(id=udata['id'])
+        u_serializers = dataSerializers(user, udata)
+        if u_serializers.is_valid():
+            u_serializers.save()
+            return JsonResponse('data updated', safe=False)
+        return JsonResponse("failed ",safe=False)
+    elif request.method == "DELETE":
+        user = apiData.objects.get(id=id)
+        user.delete()
+        return JsonResponse("deleted data",safe=False)
+        
+
+        
+
+        
+        
+
+
+
+        
+
+
+
+
+
+
+
+
 # Create your views here.
 
 

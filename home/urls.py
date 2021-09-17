@@ -13,4 +13,6 @@ urlpatterns = [
     path('status/<int:id>', studentStatus,name="studentStatus"),
     path('studentDetails/', studentDetails,name="studentDetails"),
     path('updatedetails/', updateStudent,name="updateStudent"),
+    path('apiview/',apiView,name="apiView"),
+    path('apiview/<int:id>/',apiView,name="apiView"),
 ]
